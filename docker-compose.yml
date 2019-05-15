@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # Name of the service as Docker will reference.
+  pyspark:
+    #image: jupyter/all-spark-notebook
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'pyspark'
+    env_file:
+      - .env
+    environment:
+      JUPYTER_ENABLE_LAB: 'yes'
+    ports:
+      - 8888:8888
+      - 4040:4040
+    volumes:
+      - .:/home/jovyan/work
+# if you use a named volume, you must also define it here.
+#volumes:
+#  pg_data:
+#    driver: local
